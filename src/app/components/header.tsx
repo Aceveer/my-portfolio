@@ -26,7 +26,7 @@ export default function Header() {
       <div
         className="w-full rounded-full px-8 py-4 bg-gradient-to-b from-[#020024] via-[#090979] to-[#000729] border border-[#11191e] backdrop-blur-md flex justify-evenly gap-10 shadow-md group relative"
       >
-        {navItems.map((item, index) => (
+        {navItems.map((item) => (
           <Link
             key={item.name}
             href={item.href}

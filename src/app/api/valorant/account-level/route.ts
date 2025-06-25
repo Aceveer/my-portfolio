@@ -15,6 +15,7 @@ export async function GET() {
 
         return NextResponse.json(data.data);
     } catch (error) {
+        console.log(error)
         return NextResponse.json({ status: 500, message: "Internal API fetch failed" });
     }
 }

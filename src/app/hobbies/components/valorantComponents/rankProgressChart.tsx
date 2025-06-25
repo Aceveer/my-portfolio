@@ -14,15 +14,15 @@ import { useMemo } from "react";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
-interface MMRData {
-  name: string;
-  tag: string;
-  total_games: number;
-  total_wins: number;
-  current_rank: string;
-  highest_rank: string;
-  highest_rank_by_season: Record<string, SeasonRankData>;
-}
+// interface MMRData {
+//   name: string;
+//   tag: string;
+//   total_games: number;
+//   total_wins: number;
+//   current_rank: string;
+//   highest_rank: string;
+//   highest_rank_by_season: Record<string, SeasonRankData>;
+// }
 
 interface SeasonRankData {
   wins: number;
@@ -70,7 +70,7 @@ export default function RankProgressChart({ ranks }: Props) {
 const rankProgressData = useMemo(() => {
   if (!ranks) return [];
   return Object.entries(ranks)
-    .filter(([_, rank]) => {
+    .filter(([, rank]) => {
       const trimmed = rank?.trim();
       return trimmed && tierMap[trimmed];
     })

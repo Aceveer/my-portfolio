@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 
 
 export async function GET() {
-  const name = process.env.VALORANT_USERNAME!;
-  const tag = process.env.VALORANT_TAG!;
-  const apiKey = process.env.HENRIK_API_KEY!;
+  // const name = process.env.VALORANT_USERNAME!;
+  // const tag = process.env.VALORANT_TAG!;
+  // const apiKey = process.env.HENRIK_API_KEY!;
 
   const url = `https://api.henrikdev.xyz/valorant/v2/mmr/AP/Tannu/4434`;
 
@@ -37,7 +37,6 @@ export async function GET() {
       const wins = statData.wins || 0;
       const games = statData.number_of_games || 0;
       const finalRank = statData.final_rank_patched || "Unknown";
-      const finalRankNumber = statData.final_rank || 0;
 
       totalWins += wins;
       totalGames += games;
@@ -54,6 +53,7 @@ export async function GET() {
       highest_rank_by_season: highestRankBySeason,
     });
   } catch (error) {
+    console.log(error)
     return NextResponse.json({ status: 500, message: "Internal API fetch failed" });
   }
 }

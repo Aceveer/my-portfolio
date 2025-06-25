@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import MatchPieChart from "./components/valorantComponents/matchPieChart";
-import RankProgressChart from "./components/valorantComponents/rankProgressChart";
+// import RankProgressChart from "./components/valorantComponents/rankProgressChart";
 import HighlightCarousel from "./components/valorantComponents/highlightVideosCarousel";
 import ValorantLoader from "../components/loaders/valorantLoader";
 import GradientText from "./components/valorantComponents/gradientText"
@@ -22,7 +22,7 @@ export default function ValorantStats() {
     const [response,setResponse] = useState<MMRData | null>(null)
     const [accountLevel, setAccountLevel] = useState<number | null>(null);
     const [loader,setLoader] = useState<boolean>(true);
-    const [hovered, setHovered] = useState(false);
+    // const [hovered, setHovered] = useState(false);
 
     useEffect(() => {
     const fetchData = async () => {
@@ -60,7 +60,6 @@ return (
     {/* Tab Header */}
     <GradientText
         colors={["#C21B1B", "#8F1A1A", "#210000", "#8F1A1A", "#C21B1B"]}
-        animationSpeed={3}
         showBorder={false}
         className="custom-class text-3xl font-bold mb-8 text-center slide-in-bottom"
         >

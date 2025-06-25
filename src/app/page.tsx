@@ -1,10 +1,11 @@
 import FirstSection from "./home/firstSection";
+import SecondSection from "./home/secondSection";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <FirstSection />
-      {/* Other sections will go here */}
+      <SecondSection />
     </main>
   );
 }

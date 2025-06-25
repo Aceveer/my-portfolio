@@ -1,17 +1,18 @@
 "use client";
 
 import { Tab } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import clsx from "clsx";
 import ValorantTab from "@/app/hobbies/valorant"
 import ChessTab from "./lichess";
+import Sports from "./sports";
+import Music from "./music";
 
 const tabs = [
   "Valorant",
   "Chess",
-  "Cricket",
-  "Basketball",
-  "Guitar",
+  "Sports",
+  "Music",
 ];
 
 export default function HobbiesPage() {
@@ -50,62 +51,14 @@ export default function HobbiesPage() {
               <ChessTab />
             </Tab.Panel>
             <Tab.Panel>
-              <CricketTab />
+              <Sports />
             </Tab.Panel>
             <Tab.Panel>
-              <BasketballTab />
-            </Tab.Panel>
-            <Tab.Panel>
-              <GuitarTab />
+              <Music />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
       </div>
     </main>
-  );
-}
-
-// Each Tab Component Below
-
-function CricketTab() {
-  return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4">Cricket & IPL 2024</h2>
-      <p>
-        Built an IPL 2024 dashboard showing player, match, and team analysis.
-      </p>
-      <a
-        href="https://youriplsite.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-cyan-400 underline"
-      >
-        View IPL 2024 Project →
-      </a>
-    </div>
-  );
-}
-
-function BasketballTab() {
-  return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4">Basketball</h2>
-      <p>
-        I follow the NBA and occasionally play recreational basketball. More
-        about my fav teams and matches soon.
-      </p>
-    </div>
-  );
-}
-
-function GuitarTab() {
-  return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4">Guitar & Keyboard</h2>
-      <p>
-        I enjoy playing guitar and keyboard in my free time. Covers, riffs, and
-        jam sessions are on the way.
-      </p>
-    </div>
   );
 }

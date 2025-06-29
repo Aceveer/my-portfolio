@@ -1,46 +1,56 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect } from "react";
-import AOS from "aos";
+import React from "react";
+import { FloatingDock } from "@/components/ui/floating-dock";
+import { AiOutlineHome  } from "react-icons/ai";
+import { MdWorkOutline } from "react-icons/md";
+import { VscRepoForked } from "react-icons/vsc";
+import { GiGamepad } from "react-icons/gi";
 
-const navItems = [
-  { name: "Home", href: "/" },
-  { name: "Experience", href: "/experience" },
-  { name: "Projects", href: "/projects" },
-  { name: "Hobbies", href: "/hobbies" },
-  { name: "Contact", href: "/contact" },
-];
+export function Header() {
+  const links = [
+    {
+      title: "Home",
+      icon: (
+        <AiOutlineHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/",
+    },
 
-export default function Header() {
-  useEffect(() => {
-    AOS.init({ once: true });
-  }, []);
-
+    {
+      title: "Experience",
+      icon: (
+        <MdWorkOutline  className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/experience",
+    },
+    {
+      title: "Projects",
+      icon: (
+        <VscRepoForked className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/projects",
+    },
+    {
+      title: "Hobbies",
+      icon: (
+        <GiGamepad className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/hobbies",
+    },
+  ];
   return (
-    <header
-      data-aos="fade-down"
-      data-aos-duration="1000"
-      className="top-6 left-4 right-4 z-50 mt-2"
-    >
-      <div
-        className="w-full rounded-full px-8 py-4 bg-gradient-to-b from-[#020024] via-[#090979] to-[#000729] border border-[#11191e] backdrop-blur-md flex justify-evenly gap-10 shadow-md group relative"
-      >
-        {navItems.map((item) => (
-          <Link
-            key={item.name}
-            href={item.href}
-            className="text-white text-lg font-medium hover-underline scale-in-center hover:text-sky-400"
-          >
-            {item.name}
-          </Link>
-        ))}
+<header
+  data-aos="fade-down"
+  data-aos-duration="1000"
+  className="fixed top-0 left-0 right-0 z-50 pointer-events-none"
+>
+  <div className="flex justify-center py-4 pointer-events-auto">
+    <FloatingDock
+      items={links}
+    />
+  </div>
+</header>
 
-        <div
-          id="cursor-star"
-          className="hidden md:block absolute w-4 h-4 bg-white rounded-full opacity-0 pointer-events-none blur-sm transition-transform duration-300 ease-out"
-        />
-      </div>
-    </header>
   );
 }

@@ -90,44 +90,45 @@ useEffect(() => {
   return (
    <section className="w-full h-screen flex flex-col md:flex-row overflow-hidden relative">
 
-  {/* Left Text Section */}
-  <div className="w-full md:w-1/2 h-full bg-black text-white flex flex-col justify-center items-center relative overflow-hidden">
-    {/* Star Field */}
-    <div className="star-field">
-      {isClient && <div className="star-field">{generateStars()}</div>}
+    {/* Left Text Section */}
+    <div className="w-full md:w-1/2 h-1/3 md:h-full bg-black text-white flex flex-col justify-center items-center relative overflow-hidden">
+      {/* Star Field */}
+      <div className="star-field">
+        {isClient && <div className="star-field">{generateStars()}</div>}
+      </div>
+
+      <h1 className="text-3xl md:text-5xl font-bold mb-6 tracking-in-contract-bck z-10">
+        Hello,
+      </h1>
+      <h2 className="text-xl md:text-3xl font-medium text-cyan-300 z-10">
+        I'm a
+        <span className="ml-2">
+          {text}
+          <span className="text-white blinking-cursor">|</span>
+        </span>
+      </h2>
     </div>
 
-    <h1 className="text-3xl md:text-5xl font-bold mb-6 tracking-in-contract-bck z-10">
-      Hello,
-    </h1>
-    <h2 className="text-xl md:text-3xl font-medium text-cyan-300 z-10">
-      I'm a
-      <span className="ml-2">
-        {text}
-        <span className="text-white blinking-cursor">|</span>
-      </span>
-    </h2>
-  </div>
+    {/* Right Image Section */}
+    <div className="w-full md:w-1/2 h-2/3 md:h-full flex items-center justify-center bg-[#020024] overflow-hidden relative">
+      <div className="glow-behind"></div>
+      {isClient && (
+        <div className={`image-wrapper z-10 ${isDeleting ? "slide-left-out" : "slide-left-in"}`}>
+          <img
+            ref={imageRef}
+            src={currentImage}
+            alt={fullText}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ transform: transformStyle }}
+            className="w-[70%] mx-auto align-middle md:w-[70%] max-w-md rounded-xl shadow-lg transition-transform duration-200 ease-out"
+          />
+        </div>
+      )}
+    </div>
 
-  {/* Right Image Section */}
-  <div className="w-full md:w-1/2 h-full flex items-center justify-center bg-blue-950 overflow-hidden relative">
-    {/* Glow behind the image */}
-    <div className="glow-behind"></div>
-    {isClient && (
-<div className={`image-wrapper z-10 ${isDeleting ? "slide-left-out" : "slide-left-in"}`}>
-  <img
-    ref={imageRef}
-    src={currentImage}
-    alt={fullText}
-    onMouseMove={handleMouseMove}
-    onMouseLeave={handleMouseLeave}
-    style={{ transform: transformStyle }}
-    className="w-[80%] max-w-md rounded-xl shadow-lg transition-transform duration-200 ease-out"
-  />
-</div>
-    )}
-  </div>
-</section>
+  </section>
+
 
   );
 }

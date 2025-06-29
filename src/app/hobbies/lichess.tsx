@@ -21,20 +21,19 @@ function ChessTab() {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      // const token = process.env.LICHESS_API_KEY;
+      const token = process.env.LICHESS_API_KEY;
 
       const accountRes = await fetch(`https://lichess.org/api/account`, {
         headers: {
-          Authorization: `Bearer lip_dZ8AulHaRmHrPTHMpMf3`,
+          Authorization: `Bearer lip_5O2MWGwFe8BpPCZ2fkXo`,
         },
       });
 
       const accountData = await accountRes.json();
       setAccount(accountData);
-
+      console.log(accountData);
       const modeRes = await fetch(`https://lichess.org/api/user/ikedy/perf/${selectedMode}`);
       const modeData = await modeRes.json();
-      console.log(modeData);
       setModeStats(modeData);
     } catch (error) {
       console.error('Error fetching Lichess data:', error);

@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/hobbies/components/valorantComponents/valorantCrosshair.js", "src/app/hobbies/components/sportsComponents/flowingMenu.tsx", "src/components/ui/aurora.jsx", "src/app/hobbies/components/music/masonry.js", "src/app/home/secondSection.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/hobbies/components/valorantComponents/valorantCrosshair.js", "src/app/hobbies/components/sportsComponents/flowingMenu.tsx", "src/components/ui/aurora.jsx", "src/app/hobbies/components/music/masonry.js", "src/app/home/secondSection.tsx", "src/components/ui/thirdSectionCardComponent.tsx"],
   "exclude": ["node_modules"]
 }

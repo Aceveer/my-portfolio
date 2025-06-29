@@ -1,6 +1,6 @@
 "use client";
 
-import React, { JSX } from 'react';
+import React, { JSX, useEffect, useRef, useState } from 'react';
 import { Tab } from '@headlessui/react';
 import SecondSectionCard from '@/components/ui/secondSectionCard';
 
@@ -32,7 +32,7 @@ const FrontendSkills = () => (
   <SecondSectionCard icon={<FaReact/>} title="React.js" level={80} experience={3} projects={9} spotlightColor="#61dbfb"/>
   <SecondSectionCard icon={<RiNextjsLine/>} title="Next.js" level={80} experience={2} projects={6} spotlightColor="#FFFFFF"/>
   <SecondSectionCard icon={<FaVuejs/>} title="Vue.js" level={60} experience={1} projects={1} spotlightColor="#2da968"/>
-  <SecondSectionCard icon={<RiTailwindCssLine/>} title="Tailwind CSS" level={80} experience={3} projects={6} spotlightColor="#78cac3"/> 
+  <SecondSectionCard icon={<RiTailwindCssLine/>} title="Tailwind" level={80} experience={3} projects={6} spotlightColor="#78cac3"/> 
   </>
 );
 
@@ -104,9 +104,37 @@ const skillPanels: Record<string, JSX.Element> = {
   "Machine Learning": <MachineLearningSkills />,
 };
 
-const secondSection = () => {
+const SecondSection = () => {
+
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="w-full py-12 px-6 text-white">
+    <section ref={sectionRef}
+    style={{
+        background: 'linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(11, 77, 153, 1) 100%)'
+      }}
+      className={`w-full py-12 px-6 text-white transition-opacity duration-700${
+        isVisible ? "fade-in-top" : "opacity-0"
+      }`}>
       <h2 className="text-3xl font-bold text-center mb-8">Skills</h2>
 
       <Tab.Group>
@@ -141,4 +169,4 @@ const secondSection = () => {
   );
 };
 
-export default secondSection;
+export default SecondSection;

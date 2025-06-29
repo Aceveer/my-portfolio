@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Header from "./components/header";
 import Footer from "./components/footer";
+import { Header } from "./components/header";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {

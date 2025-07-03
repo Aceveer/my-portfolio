@@ -144,7 +144,7 @@ return (
           <p className="text-sm text-gray-300">{response?.highest_rank}</p>
         </div>
         <img
-          src="/immortal3.jpg"
+          src="/ranks/Immortal_3_Rank.png"
           alt="Peak Rank"
           className="w-16 h-16 rounded-full border-2 border-white"
         />

@@ -4,27 +4,27 @@ export function FocusCardsDemo() {
   const cards = [
     {
       title: "Meta Front-End Developer Certificate from Coursera",
-      src: "/fed.png",
+      src: "/awards/fed.png",
     },
     {
       title: "Google Data Analytics from Coursera",
-      src: "/gda.png",
+      src: "/awards/gda.png",
     },
     {
       title: "Adelaide Graduate Award from University of Adelaide",
-      src: "/aga.png",
+      src: "/awards/aga.png",
     },
     {
       title: "Volunteer Recognition Award from Adelaide University Library",
-      src: "/volunteering.jpeg",
+      src: "/awards/volunteering.jpeg",
     },
     {
       title: "Performer of The Month from Infinite Computer Solutions",
-      src: "/pom.png",
+      src: "/awards/pom.png",
     },
     {
       title: "CNR Rao Merit Scholarship from PES University",
-      src: "/CNR.png",
+      src: "/awards/CNR.png",
     },
   ];
 

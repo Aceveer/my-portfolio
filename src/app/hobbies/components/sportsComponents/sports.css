@@ -43,13 +43,13 @@
 }
 
 .stagger-1 {
-  animation-delay: 3s;
+  animation-delay: 2s;
 }
 
 .stagger-2 {
-  animation-delay: 6s;
+  animation-delay: 2s;
 }
 
 .stagger-3 {
-  animation-delay: 9s;
+  animation-delay: 3s;
 }

@@ -11,11 +11,11 @@ const roles = [
 ];
 
 const roleToImage: Record<string, string> = {
-  "Full Stack Developer": "/F1.png",
-  "Data Analysis & ML Expert": "/F2.png",
-  "Master's Graduate in IT": "/F3.png",
-  "Gaming Enthusiast": "/F4.png",
-  "Musician and Singer": "/F5.png",
+  "Full Stack Developer": "/frontpage/F1.png",
+  "Data Analysis & ML Expert": "/frontpage/F2.png",
+  "Master's Graduate in IT": "/frontpage/F3.png",
+  "Gaming Enthusiast": "/frontpage/F4.png",
+  "Musician and Singer": "/frontpage/F5.png",
 };
 
 // Speeds

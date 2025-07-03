@@ -1,6 +1,5 @@
 import React from 'react'
 import ChromaGrid from './components/projectsCard'
-import SimpleImageCarousel from './components/awardsCarousel'
 
 const Projects = () => {
   return (

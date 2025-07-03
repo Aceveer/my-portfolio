@@ -66,9 +66,7 @@ const workCards = [
     ctaLink: "https://example.com/rebel",
     content: () => (
       <p>
-        I work part-time at Rebel Sport where I help customers find the right gear and make sure the store runs smoothly during busy hours. I
-        ’ve become confident with stock handling, assisting people with their questions, and keeping displays tidy 
-        — all while making sure customers leave with a smile.
+        I work part-time at Rebel Sport where I help customers find the right gear and make sure the store runs smoothly during busy hours. I’ve become confident with stock handling, assisting people with their questions, and keeping displays tidy, all while making sure customers leave with a smile.
       </p>
     ),
   },
@@ -77,15 +75,14 @@ const workCards = [
 const volunteeringCards = [
   {
     title: "University of Adelaide",
-    subtitle: "Student Volunteer – Events & Orientation",
+    subtitle: "University Library Volunteer – Special Collections",
     year: "Jan 2024 - Present",
     src: "/volunteer.png",
     ctaText: "Adelaide, Australia",
     ctaLink: "https://example.com/uofa-volunteer",
     content: () => (
       <p>
-        Volunteered for student orientation and academic events. Helped new students transition smoothly into university life.
-        Managed info booths, conducted tours, and assisted with event logistics.
+        Digitized documents by scanning and ensuring high-quality results. Created clear and accessible workflows for different scanners to make the process easy for everyone to follow and use.
       </p>
     ),
   },
@@ -101,10 +98,10 @@ const educationCards = [
     ctaLink: "https://example.com/uofa-volunteer",
     content: () => (
       <p>
-        Currently pursuing my Master’s degree, focused on advanced topics like software engineering, data analytics, and cloud computing. 
+        Completed Master's of Computing and Innovation, focused on advanced topics like software engineering, data analytics, and machine learning. 
         The course has helped me strengthen my foundation in full-stack development, agile methodologies, and building scalable digital solutions.
         <br /><br />
-        I've also actively participated in university volunteering programs and collaborated on real-world projects with peers from diverse backgrounds.
+        Recipient of Adelaide Graduate Award
       </p>
     ),
   },
@@ -119,8 +116,6 @@ const educationCards = [
       <p>
         Completed my undergraduate degree with a strong focus on electronics, signal processing, and embedded systems. 
         This is where I first discovered my passion for programming and software development, leading me to explore web and app projects alongside my coursework.
-        <br /><br />
-        Took part in technical events, coding clubs, and contributed to small group research initiatives, which laid the foundation for my transition into the software industry.
       </p>
     ),
   },

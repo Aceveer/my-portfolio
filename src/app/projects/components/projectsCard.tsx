@@ -41,7 +41,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
 
   const demo: ChromaItem[] = [
   {
-    image: "/SCENEIT.png",
+    image: "/projects/SCENEIT.png",
     title: "SceneIt",
     subtitle: "A full-stack movie platform enabling users to explore and manage movie data seamlessly.",
     handle: "Next.js | FastAPI | MySQL",
@@ -50,7 +50,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     url: "https://github.com/Aceveer/SceneIt-Movie-Platform",
   },
   {
-    image: "/ipl.png",
+    image: "/projects/ipl.png",
     title: "IPL 2024 Analysis",
     subtitle: "Comprehensive analysis of IPL 2024 season, offering insights into team and player performances.",
     handle: "Next.js | Python | MS Excel",
@@ -59,7 +59,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     url: "https://ipl2024tannuakram.vercel.app/",
   },
   {
-    image: "/marsupium.png",
+    image: "/projects/marsupium.png",
     title: "Marsupium Admin",
     subtitle: "Admin dashboard for managing financial insights and user access in a fintech application.",
     handle: "Next.js | .NET 6 | GCP | Firebase",
@@ -68,7 +68,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     url: "https://marsupium-admin.vercel.app/login",
   },
   {
-    image: "/kc.png",
+    image: "/projects/kc.png",
     title: "KoRa Consults",
     subtitle: "Professional website for a hospitality consultancy, featuring responsive design and SEO optimization.",
     handle: "Next.js | Tailwind CSS",
@@ -77,7 +77,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     url: "https://www.koraconsults.com/",
   },
   {
-    image: "/hh.png",
+    image: "/projects/hh.png",
     title: "Volunteering Organization",
     subtitle: "Digital platform for volunteer signups and program management for a local charity.",
     handle: "Vue.js | Node.js | MySQL | Docker",
@@ -86,7 +86,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     url: "https://github.com/Aceveer/Volunteering-Website",
   },
   {
-    image: "/influx.png",
+    image: "/projects/influx.png",
     title: "No Code Solution for InfluxDB",
     subtitle: "User-friendly interface for querying and visualizing time-series data without coding.",
     handle: "HTML | CSS | Node.js | InfluxDB | Grafana",
@@ -95,7 +95,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     url: "https://github.com/Aceveer/InflxuxDB",
   },
   {
-    image: "/grocery.png",
+    image: "/projects/grocery.png",
     title: "Grocery List Recommendation",
     subtitle: "Machine learning model predicting grocery reorders based on user behavior.",
     handle: "Python | Scikit-learn",
@@ -104,7 +104,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     url: "https://github.com/Aceveer/MBD-S1-2024/tree/main/Assignment%203",
   },
   {
-    image: "/energy.png",
+    image: "/projects/energy.png",
     title: "Time Series Forecasting",
     subtitle: "Forecasting energy consumption trends using time-series data visualization.",
     handle: "Node.js | InfluxDB | Grafana",
@@ -113,7 +113,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     url: "https://github.com/Aceveer/MBD-S1-2024/tree/main/Assignment%202",
   },
   {
-    image: "/obesity.png",
+    image: "/projects/obesity.png",
     title: "Obesity Prediction",
     subtitle: "Predictive model analyzing factors contributing to obesity using machine learning.",
     handle: "Python | Scikit-learn",
@@ -181,7 +181,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
       ref={rootRef}
       onPointerMove={handleMove}
       onPointerLeave={handleLeave}
-      className={`relative w-full h-full flex flex-wrap justify-center items-start gap-3 ${className}`}
+      className={`relative w-full h-full flex flex-wrap justify-center items-start gap-3 fade-in-top ${className}`}
       style={
         {
           "--r": `${radius}px`,

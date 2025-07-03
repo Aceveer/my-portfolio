@@ -1,18 +1,9 @@
 import FlowingMenu from "./components/sportsComponents/flowingMenu";
 import "./components/sportsComponents/sports.css";
 import { useEffect, useState } from "react";
-
-const headerItems = [
-  { link: '#', text: 'Hover To Reveal', text2: 'Sports I Play And Follow', image:'https://static.vecteezy.com/system/resources/previews/006/672/318/non_2x/cricket-ball-illustration-as-a-basketball-player-vector.jpg' },
-];
-
-const cricketHeaderItems = [
-  { link: '#', text: 'Sport 1', text2: 'Cricket', image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT38l2hvM0IdiC-Oc8VC6p7DlKk7hsgHPnhwA&s' },
-];
-
-const basketballHeaderItems = [
-  { link: '#', text: 'Sport 2', text2: 'Basketball', image:'https://png.pngtree.com/png-clipart/20231004/original/pngtree-basketball-cartoon-illustration-png-image_13097555.png' },
-];
+import GradientText from "./components/valorantComponents/gradientText";
+import CircularText from "./components/sportsComponents/textPressure";
+import TextPressure from "./components/sportsComponents/textPressure";
 
 const cricketItems = [
   { link: '#', text: 'Favourite International Team', text2: 'England', image: 'https://yt3.googleusercontent.com/Kvp63X5q5rUFXpy73Nwj3HYhUnymjVJyZjRGDEhUii26M8Ufr-30l9yekzDPcIj7Hj3bELCSGA=s160-c-k-c0x00ffffff-no-rj' },
@@ -28,20 +19,7 @@ const basketballItems = [
 
 
 export default function Sports() {
-    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const timer = setTimeout(() => setLoading(false), 3000);
-        return () => clearTimeout(timer);
-    }, []);
-
-   if (loading) {
-    return (
-        <div className="flex items-center justify-center">
-        <div className="loader w-24 h-24"></div>
-        </div>
-    );
-    }
   return (
     <div 
         className="p-8 rounded-xl shadow-xl"
@@ -50,34 +28,35 @@ export default function Sports() {
     }}>
 
         {/* Header */}
-        <h1 
-        style={{
-                height: '100px',
-                width: '100%',
-                position: 'relative',
-                }}
-        className="custom-class text-4xl lg:text-5xl font-extrabold mb-6 text-center tracking-wide focus-in-expand text-[#000000]">
-            <FlowingMenu items={headerItems} />
-        </h1>
+        <GradientText
+            colors={["#033c94",  "#2074f5",  "#033c94"]}
+            showBorder={false}
+            className="custom-class text-3xl font-bold mb-8 text-center slide-in-bottom"
+            >
+            Sports I Play and Follow
+        </GradientText>
 
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
 
         {/* Left - Cricket & IPL */}
         <div className="fade-in-left flex flex-col items-center w-full focus-in-expand stagger-1">
+  
+        <div className="w-1/2">
+        <TextPressure
+            text="Cricket"
+            flex={true}
+            alpha={false}
+            stroke={true}
+            width={true}
+            weight={true}
+            italic={true}
+            textColor="#ffffff"
+            strokeColor="#ff0000"
+            minFontSize={36}
+        />
+        </div>
             
-            {/* Cricket Header Title */}
-            <div
-                className="focus-in-expand stagger-2"
-                style={{
-                height: '100px',
-                width: '100%',
-                position: 'relative',
-                }}
-            >
-                <FlowingMenu items={cricketHeaderItems} />
-            </div>
-
             {/* Cricket Items */}
             <div
                 className="focus-in-expand stagger-3"
@@ -93,19 +72,20 @@ export default function Sports() {
 
             {/* Right - Basketball */}
             <div className="fade-in-right border-l border-gray-400 pl-6 flex flex-col items-center focus-in-expand stagger-2">
-            
-            {/* Basketball Header Title */}
-            <div
-                className="focus-in-expand stagger-2"
-                style={{
-                height: '100px',
-                width: '100%',
-                position: 'relative',
-                }}
-            >
-                <FlowingMenu items={basketballHeaderItems} />
-            </div>
-
+                <div className="w-1/2">
+                    <TextPressure
+                        text="Basketball"
+                        flex={true}
+                        alpha={false}
+                        stroke={true}
+                        width={true}
+                        weight={true}
+                        italic={true}
+                        textColor="#ffffff"
+                        strokeColor="#0E3878"
+                        minFontSize={36}
+                    />
+                </div>
             {/* Basketball Items */}
             <div className="focus-in-expand stagger-3" style={{ width: '100%', height:'420px' }}>
                 <FlowingMenu items={basketballItems} />

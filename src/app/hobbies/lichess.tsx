@@ -21,22 +21,18 @@ function ChessTab() {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const token = process.env.LICHESS_API_KEY;
-
-      const accountRes = await fetch(`https://lichess.org/api/account`, {
-        headers: {
-          Authorization: `Bearer lip_5O2MWGwFe8BpPCZ2fkXo`,
-        },
-      });
-
+      // Call your internal API instead of directly hitting Lichess
+      const accountRes = await fetch("/api/lichess");
       const accountData = await accountRes.json();
       setAccount(accountData);
       console.log(accountData);
+
+      // Call public Lichess mode stats directly
       const modeRes = await fetch(`https://lichess.org/api/user/ikedy/perf/${selectedMode}`);
       const modeData = await modeRes.json();
       setModeStats(modeData);
     } catch (error) {
-      console.error('Error fetching Lichess data:', error);
+      console.error("Error fetching Lichess data:", error);
     } finally {
       setLoading(false);
     }

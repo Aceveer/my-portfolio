@@ -2,16 +2,16 @@ import { NextResponse } from "next/server";
 
 
 export async function GET() {
-  // const name = process.env.VALORANT_USERNAME!;
-  // const tag = process.env.VALORANT_TAG!;
-  // const apiKey = process.env.HENRIK_API_KEY!;
+  const name = process.env.VALORANT_USERNAME;
+  const tag = process.env.VALORANT_TAG;
+  const apiKey = process.env.HENRIK_API_KEY;
 
-  const url = `https://api.henrikdev.xyz/valorant/v2/mmr/AP/Tannu/4434`;
+  const url = `https://api.henrikdev.xyz/valorant/v2/mmr/AP/${name}/${tag}`;
 
   try {
     const res = await fetch(url, {
       headers: {
-        Authorization: "HDEV-bd74ce98-e01f-4ac3-ab61-560bba516fcd",
+        Authorization: apiKey ?? "",
       },
     });
 

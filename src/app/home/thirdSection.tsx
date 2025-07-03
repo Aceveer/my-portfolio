@@ -5,14 +5,14 @@ const projects = [
   {
     title: "SceneIt Movie Platform",
     desc: "A full-stack movie discovery and discussion platform.",
-    image: "/sceneit.png",
+    image: "/projects/sceneit.png",
     link: "https://sceneit.vercel.app",
     techStack: "Next.js, FastAPI, MySQL, Tailwind",
   },
   {
     title: "Grocery Recommendation System",
     desc: "Using content-based filtering and Apriori algorithm",
-    image: "/grocery.png",
+    image: "/projects/grocery.png",
     link: "https://fitnessapp.vercel.app",
     techStack: "Python, Scikit",
   },

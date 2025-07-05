@@ -57,7 +57,7 @@ export default function HighlightCarousel() {
     currentVideo.type === "youtube" ? getYouTubeEmbedUrl(currentVideo.src) : "";
 
   return (
-    <div className="w-2/3 max-w-5xl bg-zinc-900 p-4 rounded-xl shadow-xl relative">
+    <div className="w-full sm:w-2/3 max-w-5xl bg-zinc-900 p-4 rounded-xl shadow-xl relative">
       <h3 className="text-lg font-semibold mb-2 text-white text-center">Highlight Reel</h3>
 
       <div className="relative aspect-video w-full rounded-lg overflow-hidden">

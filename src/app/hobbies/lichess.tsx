@@ -61,33 +61,32 @@ useEffect(() => {
           <GradientText
             colors={['#000000', '#6B5439', '#3E2723', '#6B5439', '#000000']}
             showBorder={false}
-            className="custom-class text-3xl font-bold mb-8 text-center slide-in-bottom"
+            className="custom-class text-base md:text-xl lg:text-3xl font-bold mb-8 text-center slide-in-bottom"
           >
             Chess Stats
           </GradientText>
 
           {/* Top Row - Icon + User Info */}
-          <div className="flex items-center justify-between mb-6 w-full gap-4">
-
+          <div className="grid grid-cols-1 md:grid-cols-3 place-items-center">
             {/* Left */}
-            <div className="flex items-center gap-4 min-w-[200px] slide-in-left">
-              <SiLichess className="w-16 h-16" />
-              <div>
-                <p className="text-lg font-semibold"><a href='https://lichess.org/@/iKedy' target='_blank'>{account?.username}</a></p>
-                <p className="text-lg text-black">Lichess</p>
+            <div className="flex items-center gap-4 slide-in-left">
+              <SiLichess className="h-8 w-8 lg:w-16 lg:h-16" />
+              <div className='text-base lg:text-lg'>
+                <p className="font-semibold"><a href='https://lichess.org/@/iKedy' target='_blank'>{account?.username}</a></p>
+                <p className="text-black">Lichess</p>
               </div>
             </div>
 
             {/* Middle */}
             <div className="flex-1 text-center slide-in-bottom">
-              <p className="text-xl font-semibold whitespace-nowrap">
+              <p className="text-sm md:text-base lg:text-lg font-semibold  ml-4">
                 2024 Penant B Grade Board 2 Winner
               </p>
             </div>
 
             {/* Right */}
-            <div className="text-right min-w-[220px] slide-in-right">
-              <p className="text-base">
+            <div className="text-right slide-in-right">
+              <p className="text-xs md:text-sm lg:text-base">
                 Created:{' '}
                 {account?.createdAt
                   ? new Date(account.createdAt)
@@ -99,7 +98,7 @@ useEffect(() => {
                       .replace(/ /g, ' ')
                   : 'N/A'}
               </p>
-              <p className="text-base">
+              <p className="text-xs md:text-sm lg:text-base">
                 Last Active:{' '}
                 {account?.seenAt
                   ? new Date(account.seenAt)
@@ -114,16 +113,15 @@ useEffect(() => {
             </div>
           </div>
 
-
-          {/* Second Row - Game Icons */}
-          <div className="flex justify-around text-4xl mb-2 slide-in-top">
-            <GiBulletBill title="Bullet" className={selectedMode === 'bullet' ? 'text-white' : ''}/>
-            <AiFillFire title="Blitz" className={selectedMode === 'blitz' ? 'text-white' : ''} />
-            <LuRabbit title="Rapid" className={selectedMode === 'rapid' ? 'text-white' : ''} />
-          </div>
+            {/* Second Row - Game Icons */}
+            <div className="flex justify-around text-2xl sm:text-4xl my-4 slide-in-top">
+              <GiBulletBill title="Bullet" className={selectedMode === 'bullet' ? 'text-white' : ''}/>
+              <AiFillFire title="Blitz" className={selectedMode === 'blitz' ? 'text-white' : ''} />
+              <LuRabbit title="Rapid" className={selectedMode === 'rapid' ? 'text-white' : ''} />
+            </div>
 
           {/* Ratings Row */}
-          <div className="flex justify-around text-md font-semibold mb-6 slide-in-top">
+          <div className="flex justify-around text-xs md:text-lg font-semibold mb-6 slide-in-top">
             <p className={selectedMode === 'bullet' ? 'text-white' : ''}>Bullet: {account?.perfs?.bullet?.rating || 'N/A'}</p>
             <p className={selectedMode === 'blitz' ? 'text-white' : ''}>Blitz: {account?.perfs?.blitz?.rating || 'N/A'}</p>
             <p className={selectedMode === 'rapid' ? 'text-white' : ''}>Rapid: {account?.perfs?.rapid?.rating || 'N/A'}</p>
@@ -134,7 +132,7 @@ useEffect(() => {
 
           {/* Dropdown */}
           <FormControl variant="outlined" className="fade-in-fwd">
-            <InputLabel id="lichess-mode-label">View Stats:</InputLabel>
+            <InputLabel id="lichess-mode-label" className='text-base md:text-xs'>View Stats:</InputLabel>
             <Select
               labelId="lichess-mode-label"
               id="lichess-mode"
@@ -153,21 +151,31 @@ useEffect(() => {
 
           {/* Stats Display */}
           {modeStats && (
-            <div className="mt-6 p-4 rounded-xl bg-opacity-20 shadow-md text-black">
-              <p className="font-bold text-lg capitalize mb-4">{selectedMode} Stats</p>
+            <div className="mt-6 p-4 rounded-xl bg-opacity-20 shadow-md text-black w-full">
+              <p className="font-bold text-base sm:text-lg capitalize mb-4 text-center sm:text-left">
+                {selectedMode} Stats
+              </p>
 
               {/* Rating, Percentile, Progress */}
-              <div className="grid grid-cols-3 gap-4 text-center text-sm sm:text-base">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center text-sm sm:text-base">
                 <div>
-                  <p className="text-lg font-semibold">{(modeStats.perf.glicko.rating.toString()).substring(0,4)}</p>
+                  <p className="text-base sm:text-lg font-semibold">
+                    {(modeStats.perf.glicko.rating.toString()).substring(0, 4)}
+                  </p>
                   <p className="text-black">Rating</p>
                 </div>
                 <div>
-                  <p className="text-lg font-semibold">{modeStats.percentile != null ? `${modeStats.percentile} %` : 'Not enough games played'}</p>
+                  <p className="text-base sm:text-lg font-semibold">
+                    {modeStats.percentile != null
+                      ? `${modeStats.percentile} %`
+                      : 'Not enough games played'}
+                  </p>
                   <p className="text-black">Percentile</p>
                 </div>
                 <div>
-                  <p className="text-lg font-semibold">{modeStats.rank ?? 'Not enough games played'}</p>
+                  <p className="text-base sm:text-lg font-semibold">
+                    {modeStats.rank ?? 'Not enough games played'}
+                  </p>
                   <p className="text-black">Rank</p>
                 </div>
               </div>
@@ -178,16 +186,27 @@ useEffect(() => {
                 losses={modeStats.stat.count.loss}
                 draws={modeStats.stat.count.draw || 0}
               />
+
               {/* Label Row for Numbers */}
-              <div className="grid grid-cols-4 text-center mt-2 text-sm sm:text-base">
-                <p>Games: <span className='font-semibold'>{modeStats.stat.count.all}</span></p>
-                <p>Wins: <span className='font-semibold'>{modeStats.stat.count.win}</span></p>
-                <p>Losses: <span className='font-semibold'>{modeStats.stat.count.loss}</span></p>
-                <p>Draws: <span className='font-semibold'>{modeStats.stat.count.draw ?? '0'}</span></p>
+              <div className="grid grid-cols-2 sm:grid-cols-4 text-center mt-2 text-xs sm:text-sm md:text-base gap-y-2">
+                <p>
+                  Games: <span className="font-semibold">{modeStats.stat.count.all}</span>
+                </p>
+                <p>
+                  Wins: <span className="font-semibold">{modeStats.stat.count.win}</span>
+                </p>
+                <p>
+                  Losses: <span className="font-semibold">{modeStats.stat.count.loss}</span>
+                </p>
+                <p>
+                  Draws: <span className="font-semibold">{modeStats.stat.count.draw ?? '0'}</span>
+                </p>
               </div>
             </div>
           )}
+
         </div>
+
         </>
       )}
     </div>

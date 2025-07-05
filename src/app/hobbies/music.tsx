@@ -1,4 +1,3 @@
-"use client";
 import Masonry from "./components/music/masonry.js";
 import { GlareCardDemo } from "./components/music/glareCardDemo";
 
@@ -34,22 +33,6 @@ const items = [
     height: 500,
   }
 ];
-
-const instruments = [
-  {
-    id: "1",
-    img: "/guitar.jpg",
-    url: "https://example.com/one",
-    height: 600,
-  },
-  {
-    id: "2",
-    img: "/keyboard.jpg",
-    url: "https://example.com/two",
-    height: 450,
-  }
-];
-
 export default function Music() {
 
   return (

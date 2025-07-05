@@ -19,14 +19,14 @@ export default function MatchPieChart({ totalGames, totalWins }: MatchPieChartPr
     datasets: [
       {
         data: [totalWins, totalLosses],
-        backgroundColor: ["#22c55e", "#ef4444"], // green & red
+        backgroundColor: ["#87FF65", "#ED6A5A"], // green & red
         borderWidth: 1,
       },
     ],
   };
 
   const pieChartOptions = {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
@@ -39,8 +39,8 @@ export default function MatchPieChart({ totalGames, totalWins }: MatchPieChartPr
   };
 
   return (
-    <div className="w-44 h-44">
-      <Pie data={pieChartData} options={pieChartOptions} width={176} height={176} />
+    <div className="w-22 h-22 lg:w-44 lg:h-44 text-sm lg:text-base">
+      <Pie data={pieChartData} options={pieChartOptions} />
     </div>
   );
 }

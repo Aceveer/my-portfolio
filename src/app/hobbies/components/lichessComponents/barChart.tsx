@@ -53,9 +53,12 @@ const PerformanceDonut = ({ wins, draws, losses }: Props) => {
   };
 
   return (
-    <div className="w-full max-w-xs mx-auto">
+  <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto">
+    <div className="w-40 h-40 sm:w-60 sm:h-60 md:w-72 md:h-72 mx-auto">
       <Doughnut data={data} options={options} />
     </div>
+  </div>
+
   );
 };
 

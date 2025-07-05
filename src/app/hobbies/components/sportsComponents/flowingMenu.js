@@ -73,17 +73,17 @@ function MenuItem({ link, text, text2, image }) {
 
   const repeatedMarqueeContent = Array.from({ length: 4 }).map((_, idx) => (
     <React.Fragment key={idx}>
-      <span>{text2}</span>
+      <span className='md:text-base text-xs'>{text2}</span>
       <div
         className="marquee__img"
          style={{
           backgroundImage: `url(${image})`,
           width: '120px',
           height: '120px',
-          backgroundSize: 'cover',         // 🔄 Cover the whole box
-          backgroundPosition: 'center',    // 🔄 Center the image
-          backgroundRepeat: 'no-repeat',   // ✅ No tiling
-          borderRadius: '12px',            // Optional: round corners
+          backgroundSize: 'contain',        
+          backgroundPosition: 'center',    
+          backgroundRepeat: 'no-repeat',  
+          borderRadius: '12px',            
         }}
       />
     </React.Fragment>

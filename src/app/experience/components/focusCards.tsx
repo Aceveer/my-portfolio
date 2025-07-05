@@ -20,7 +20,7 @@ export function FocusCardsDemo() {
     },
     {
       title: "Performer of The Month from Infinite Computer Solutions",
-      src: "/awards/pom.png",
+      src: "/awards/POM.png",
     },
     {
       title: "CNR Rao Merit Scholarship from PES University",

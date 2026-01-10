@@ -10,6 +10,13 @@ export function AnimatedTestimonialsDemo() {
       designation: "KoRa Consults",
       src: "/experience/kora.png",
     },
+    {
+      quote:
+        "I developed a comprehensive branding package for JustKleen Services with analytics to view users visits. I collaborated with the client to understand their brand identity and target audience, ensuring that the designs effectively communicated their services.",
+      name: "Jasjit Kohli",
+      designation: "JustKleen Services",
+      src: "/experience/justkleen.jpeg",
+    },
   ];
   return <AnimatedTestimonials testimonials={testimonials} />;
 }

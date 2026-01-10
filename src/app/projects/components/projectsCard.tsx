@@ -41,6 +41,15 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
 
   const demo: ChromaItem[] = [
   {
+    image: "/experience/JustKleen.jpeg",
+    title: "JustKleen Services Website",
+    subtitle: "Professional website for an ex-military, and a business in providing cleaning and security consultancy and services. Featuring responsive design and SEO optimization.",
+    handle: "Next.js | Vercel Analytics",
+    borderColor: "#1D3AE5",
+    gradient: "linear-gradient(145deg,#0A3AE5,#000)",
+    url: "https://www.justkleenservices.com/",
+  },
+  {
     image: "/projects/SCENEIT.png",
     title: "SceneIt",
     subtitle: "A full-stack movie platform enabling users to explore and manage movie data seamlessly.",
@@ -71,7 +80,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     image: "/projects/kc.png",
     title: "KoRa Consults",
     subtitle: "Professional website for a hospitality consultancy, featuring responsive design and SEO optimization.",
-    handle: "Next.js | Tailwind CSS",
+    handle: "Next.js | Tailwind CSS | ZOHO Mail",
     borderColor: "#EF4444",
     gradient: "linear-gradient(195deg,#EF4444,#000)",
     url: "https://www.koraconsults.com/",

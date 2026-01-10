@@ -5,18 +5,18 @@ import { ExpandableCardDemo } from "./jobCard";
 
 const industryCards = [
   {
-    title: "Self-Employed",
-    subtitle: "Freelance Software Engineer",
-    year: "May 2025 - Present",
+    title: "Hubbel",
+    subtitle: "Graduate Software Engineer",
+    year: "Jan 2026 - Present",
     src: "/marsupium.png",
     ctaText: "Adelaide, Australia",
     ctaLink: "https://example.com/marsupium",
     content: () => (
       <p>
-      Developed the full website for KoRa Consults, a hospitality consultancy, from planning and requirement gathering to deployment. Built the frontend using Next.js and Tailwind CSS, with animated components, responsive layouts, and SEO optimizations.
-
-      <br /><br />
-      Currently working on the Prerna Magazine archive website to preserve Punjabi literary content. Designed it as a clean, accessible blog platform with structured categorization and intuitive navigation using Markdown and dynamic routing.
+      Joined Hubbel as a Graduate Software Engineer, contributing to the development of innovative software solutions. Engaged in full-stack development, collaborating with cross-functional teams to deliver high-quality applications that meet user needs and business goals.
+      <br /><br>
+      </br>
+      Focused on enhancing my skills in modern web technologies, agile methodologies, and cloud computing while working on real-world projects that drive impact and innovation.
 
     </p>
     ),
@@ -76,7 +76,7 @@ const volunteeringCards = [
   {
     title: "University of Adelaide",
     subtitle: "University Library Volunteer – Special Collections",
-    year: "Jan 2024 - Present",
+    year: "Jan 2024 - Jul 2025",
     src: "/volunteer.png",
     ctaText: "Adelaide, Australia",
     ctaLink: "https://example.com/uofa-volunteer",
@@ -92,7 +92,7 @@ const educationCards = [
   {
     title: "University of Adelaide",
     subtitle: "Master of Computing and Innovation",
-    year: "July 2023 - July 2025",
+    year: "Jul 2023 - Jul 2025",
     src: "/volunteer.png",
     ctaText: "Adelaide, Australia",
     ctaLink: "https://example.com/uofa-volunteer",
@@ -108,7 +108,7 @@ const educationCards = [
   {
     title: "PES University",
     subtitle: "Bachelor of Technology in Electronics and Communication",
-    year: "August 2017 - July 2021",
+    year: "Aug 2017 - Jul 2021",
     src: "/volunteer.png",
     ctaText: "Bangalore, India",
     ctaLink: "https://example.com/uofa-volunteer",

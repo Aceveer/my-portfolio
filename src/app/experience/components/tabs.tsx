@@ -14,8 +14,7 @@ const industryCards = [
     content: () => (
       <p>
       Joined Hubbel as a Graduate Software Engineer, contributing to the development of innovative software solutions. Engaged in full-stack development, collaborating with cross-functional teams to deliver high-quality applications that meet user needs and business goals.
-      <br /><br>
-      </br>
+      <br /><br />
       Focused on enhancing my skills in modern web technologies, agile methodologies, and cloud computing while working on real-world projects that drive impact and innovation.
 
     </p>
@@ -127,8 +126,8 @@ const tabs = [
     title: "Industry",
     value: "industry",
     content: (
-      <div className="w-full h-full p-6 md:p-10 rounded-2xl text-white text-xl md:text-3xl font-semibold bg-gradient-to-br from-[#090555] to-[#0B4D99]">
-        <p className="mb-4">Industry Experience</p>
+      <div className="w-full h-full overflow-auto no-visible-scrollbar p-6 md:p-10 rounded-2xl text-white bg-gradient-to-br from-[#090555] to-[#0B4D99] border border-cyan-400/20">
+        <h3 className="mb-6 text-xl md:text-2xl font-bold">Industry Experience</h3>
         <ExpandableCardDemo cards={industryCards} />
       </div>
     ),
@@ -137,8 +136,8 @@ const tabs = [
     title: "Work",
     value: "work",
     content: (
-      <div className="w-full h-full p-6 md:p-10 rounded-2xl text-white text-xl md:text-3xl font-semibold bg-gradient-to-br from-[#090555] to-[#0B4D99]">
-        <p className="mb-4">Work Experience</p>
+      <div className="w-full h-full overflow-auto no-visible-scrollbar p-6 md:p-10 rounded-2xl text-white bg-gradient-to-br from-[#090555] to-[#0B4D99] border border-cyan-400/20">
+        <h3 className="mb-6 text-xl md:text-2xl font-bold">Work Experience</h3>
         <ExpandableCardDemo cards={workCards} />
       </div>
     ),
@@ -147,8 +146,8 @@ const tabs = [
     title: "Volunteering",
     value: "volunteering",
     content: (
-      <div className="w-full h-full p-6 md:p-10 rounded-2xl text-white text-xl md:text-3xl font-semibold bg-gradient-to-br from-[#090555] to-[#0B4D99]">
-        <p className="mb-4">Volunteering Experience</p>
+      <div className="w-full h-full overflow-auto no-visible-scrollbar p-6 md:p-10 rounded-2xl text-white bg-gradient-to-br from-[#090555] to-[#0B4D99] border border-cyan-400/20">
+        <h3 className="mb-6 text-xl md:text-2xl font-bold">Volunteering Experience</h3>
         <ExpandableCardDemo cards={volunteeringCards} />
       </div>
     ),
@@ -157,8 +156,8 @@ const tabs = [
     title: "Education",
     value: "education",
     content: (
-      <div className="w-full h-full p-6 md:p-10 rounded-2xl text-white text-xl md:text-3xl font-semibold bg-gradient-to-br from-[#090555] to-[#0B4D99]">
-        <p className="mb-4">Education</p>
+      <div className="w-full h-full overflow-auto no-visible-scrollbar p-6 md:p-10 rounded-2xl text-white bg-gradient-to-br from-[#090555] to-[#0B4D99] border border-cyan-400/20">
+        <h3 className="mb-6 text-xl md:text-2xl font-bold">Education</h3>
         <ExpandableCardDemo cards={educationCards} />
       </div>
     ),
@@ -170,7 +169,7 @@ export function TabsDemo() {
 
 
   return (
-    <div className="h-[35rem] [perspective:1000px] relative b flex flex-col max-w-5xl mx-auto w-full text-white items-start justify-start mb-40">
+    <div className="h-[35rem] [perspective:1000px] relative flex flex-col max-w-5xl mx-auto w-full px-6 text-white items-start justify-start mb-32 md:mb-40">
       <Tabs tabs={tabs} />
     </div>
   );

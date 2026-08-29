@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
+import { HiArrowRight, HiOutlineMail } from "react-icons/hi";
 
 const roles = [
   "Full Stack Developer",
@@ -18,121 +20,136 @@ const roleToImage: Record<string, string> = {
   "Musician and Singer": "/frontpage/F5.png",
 };
 
-// Speeds
+// Typing speeds
 const TYPE_SPEED = 70;
 const DELETE_SPEED = 60;
 const PAUSE_AFTER_TYPING = 1200;
 
 export default function FirstSection() {
-  const [index, setIndex] = useState(0); // current role index
+  const [index, setIndex] = useState(0);
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  const [transformStyle, setTransformStyle] = useState("");
+
+  const imageRef = useRef<HTMLImageElement>(null);
 
   const fullText = roles[index];
   const currentImage = roleToImage[fullText];
 
-  const imageRef = useRef<HTMLImageElement>(null);
-const [transformStyle, setTransformStyle] = useState("");
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
-const handleMouseMove = (e: React.MouseEvent) => {
-  const card = imageRef.current;
-  if (!card) return;
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const card = imageRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const rotateX = ((y / rect.height) - 0.5) * -10;
+    const rotateY = ((x / rect.width) - 0.5) * 10;
+    setTransformStyle(
+      `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`
+    );
+  };
 
-  const rect = card.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-
-  const rotateX = ((y / rect.height) - 0.5) * -10; // vertical tilt
-  const rotateY = ((x / rect.width) - 0.5) * 10;  // horizontal tilt
-
-  setTransformStyle(
-    `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`
-  );
-};
-
-const handleMouseLeave = () => {
-  setTransformStyle("perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)");
-};
-
-const [isClient, setIsClient] = useState(false);
-
-useEffect(() => {
-  setIsClient(true);
-}, []);
+  const handleMouseLeave = () => {
+    setTransformStyle("perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)");
+  };
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
-
     if (!isDeleting && text.length < fullText.length) {
-      // Typing
-      timeout = setTimeout(() => {
-        setText(fullText.substring(0, text.length + 1));
-      }, TYPE_SPEED);
+      timeout = setTimeout(() => setText(fullText.substring(0, text.length + 1)), TYPE_SPEED);
     } else if (!isDeleting && text.length === fullText.length) {
-      // Pause before delete
-      timeout = setTimeout(() => {
-        setIsDeleting(true);
-      }, PAUSE_AFTER_TYPING);
+      timeout = setTimeout(() => setIsDeleting(true), PAUSE_AFTER_TYPING);
     } else if (isDeleting && text.length > 0) {
-      // Deleting
-      timeout = setTimeout(() => {
-        setText(fullText.substring(0, text.length - 1));
-      }, DELETE_SPEED);
+      timeout = setTimeout(() => setText(fullText.substring(0, text.length - 1)), DELETE_SPEED);
     } else if (isDeleting && text.length === 0) {
-      // Move to next
       setIsDeleting(false);
       setIndex((prev) => (prev + 1) % roles.length);
     }
-
     return () => clearTimeout(timeout);
   }, [text, isDeleting, fullText]);
 
   return (
-   <section className="w-full h-screen flex flex-col md:flex-row overflow-hidden relative">
-
-    {/* Left Text Section */}
-    <div className="w-full md:w-1/2 h-1/3 md:h-full bg-black text-white flex flex-col justify-center items-center relative overflow-hidden">
-      {/* Star Field */}
-      <div className="star-field">
+    <section className="relative w-full min-h-[100dvh] flex flex-col md:flex-row overflow-hidden bg-[#020024]">
+      {/* Left: intro */}
+      <div className="relative w-full md:w-1/2 min-h-[42dvh] md:min-h-[100dvh] flex flex-col justify-center px-8 sm:px-12 lg:px-20 py-16 bg-[#04061e]">
+        {/* Star field */}
         {isClient && <div className="star-field">{generateStars()}</div>}
+        {/* soft cyan wash */}
+        <div className="pointer-events-none absolute -left-24 top-1/3 h-80 w-80 rounded-full bg-cyan-400/10 blur-[120px]" />
+
+        <div className="relative z-10 max-w-xl">
+          <p className="hero-rise text-sm font-mono uppercase tracking-[0.25em] text-cyan-300/80" style={{ animationDelay: "0.05s" }}>
+            Hi, my name is
+          </p>
+
+          <h1
+            className="hero-rise mt-4 text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05]"
+            style={{ animationDelay: "0.15s" }}
+          >
+            Tanveer Akram
+          </h1>
+
+          <p
+            className="hero-rise mt-5 text-xl md:text-2xl font-medium text-cyan-300 h-8"
+            style={{ animationDelay: "0.28s" }}
+          >
+            {text}
+            <span className="text-white blinking-cursor">|</span>
+          </p>
+
+          <p className="hero-rise mt-5 text-base text-slate-300/90 leading-relaxed max-w-md" style={{ animationDelay: "0.4s" }}>
+            I build intuitive, performant web experiences and dig into data.
+            Based in Adelaide, Australia.
+          </p>
+
+          <div className="hero-rise mt-9 flex flex-wrap items-center gap-4" style={{ animationDelay: "0.52s" }}>
+            <a
+              href="/projects"
+              className="group inline-flex items-center gap-2 rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-[#04061e] transition-transform duration-200 hover:bg-cyan-300 active:scale-[0.98]"
+            >
+              View work
+              <HiArrowRight className="transition-transform duration-200 group-hover:translate-x-0.5" />
+            </a>
+            <a
+              href="mailto:tanveerakramandrew@gmail.com"
+              className="inline-flex items-center gap-2 rounded-full border border-cyan-300/40 px-6 py-3 text-sm font-semibold text-cyan-100 transition-colors duration-200 hover:border-cyan-300 hover:bg-cyan-300/10 active:scale-[0.98]"
+            >
+              <HiOutlineMail className="text-base" />
+              Get in touch
+            </a>
+          </div>
+        </div>
       </div>
 
-      <h1 className="text-3xl md:text-5xl font-bold mb-6 tracking-in-contract-bck z-10">
-        Hello,
-      </h1>
-      <h2 className="text-xl md:text-3xl font-medium text-cyan-300 z-10">
-        I'm a
-        <span className="ml-2">
-          {text}
-          <span className="text-white blinking-cursor">|</span>
-        </span>
-      </h2>
-    </div>
-
-    {/* Right Image Section */}
-    <div className="w-full md:w-1/2 h-2/3 md:h-full flex items-center justify-center bg-[#020024] overflow-hidden relative">
-      <div className="glow-behind"></div>
-      {isClient && (
-        <div className={`image-wrapper z-10 ${isDeleting ? "slide-left-out" : "slide-left-in"}`}>
-          <img
-            ref={imageRef}
-            src={currentImage}
-            alt={fullText}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{ transform: transformStyle }}
-            className="w-[70%] mx-auto align-middle md:w-[70%] max-w-md rounded-xl shadow-lg transition-transform duration-200 ease-out"
-          />
-        </div>
-      )}
-    </div>
-
-  </section>
-
-
+      {/* Right: portrait synced to role */}
+      <div className="relative w-full md:w-1/2 min-h-[58dvh] md:min-h-[100dvh] flex items-center justify-center overflow-hidden bg-[#020024]">
+        <div className="glow-behind" />
+        {isClient && (
+          <div className={`image-wrapper z-10 ${isDeleting ? "slide-left-out" : "slide-left-in"}`}>
+            <Image
+              ref={imageRef}
+              src={currentImage}
+              alt={fullText}
+              width={512}
+              height={512}
+              priority
+              sizes="(max-width: 768px) 70vw, 28rem"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{ transform: transformStyle }}
+              className="w-[70%] h-auto mx-auto md:w-[70%] max-w-md rounded-xl shadow-2xl shadow-cyan-500/10 transition-transform duration-200 ease-out"
+            />
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
-
 
 const generateStars = (count = 30) => {
   return Array.from({ length: count }).map((_, i) => {
@@ -143,12 +160,7 @@ const generateStars = (count = 30) => {
       <div
         key={i}
         className="star"
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          top: `${top}%`,
-          left: `${left}%`,
-        }}
+        style={{ width: `${size}px`, height: `${size}px`, top: `${top}%`, left: `${left}%` }}
       />
     );
   });

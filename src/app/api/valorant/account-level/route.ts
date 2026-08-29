@@ -1,21 +1,23 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
+  const name = process.env.VALORANT_USERNAME;
+  const tag = process.env.VALORANT_TAG;
+  const apiKey = process.env.HENRIK_API_KEY;
 
-    const url = `https://api.henrikdev.xyz/valorant/v2/account/Tannu/4434`;
+  const url = `https://api.henrikdev.xyz/valorant/v2/account/${name}/${tag}`;
 
-    try {
-        const res = await fetch(url, {
-        headers: {
-            Authorization: "HDEV-bd74ce98-e01f-4ac3-ab61-560bba516fcd",
-        },
-        });
+  try {
+    const res = await fetch(url, {
+      headers: {
+        Authorization: apiKey ?? "",
+      },
+    });
 
-        const data = await res.json();
+    const data = await res.json();
 
-        return NextResponse.json(data.data);
-    } catch (error) {
-        console.log(error)
-        return NextResponse.json({ status: 500, message: "Internal API fetch failed" });
-    }
+    return NextResponse.json(data.data);
+  } catch {
+    return NextResponse.json({ status: 500, message: "Internal API fetch failed" });
+  }
 }

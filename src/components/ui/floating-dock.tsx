@@ -64,9 +64,12 @@ const FloatingDockMobile = ({
               >
                 <a
                   href={item.href}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-900"
+                  aria-label={item.title}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020024] dark:bg-neutral-900"
                 >
-                  <div className="h-4 w-4">{item.icon}</div>
+                  <div className="h-4 w-4" aria-hidden="true">
+                    {item.icon}
+                  </div>
                 </a>
               </motion.div>
             ))}
@@ -75,9 +78,14 @@ const FloatingDockMobile = ({
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-800"
+        aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={open}
+        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020024] dark:bg-neutral-800"
       >
-        <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
+        <IconLayoutNavbarCollapse
+          aria-hidden="true"
+          className="h-5 w-5 text-neutral-500 dark:text-neutral-400"
+        />
       </button>
     </div>
   );
@@ -163,7 +171,13 @@ function IconContainer({
   const [hovered, setHovered] = useState(false);
 
   return (
-    <a href={href}>
+    <a
+      href={href}
+      aria-label={title}
+      onFocus={() => setHovered(true)}
+      onBlur={() => setHovered(false)}
+      className="rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020024]"
+    >
       <motion.div
         ref={ref}
         style={{ width, height }}
@@ -185,6 +199,7 @@ function IconContainer({
         </AnimatePresence>
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
+          aria-hidden="true"
           className="flex items-center justify-center"
         >
           {icon}

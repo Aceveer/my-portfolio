@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 export const Card = React.memo(
@@ -10,23 +11,28 @@ export const Card = React.memo(
     hovered,
     setHovered,
   }: {
-    card: any;
+    card: Card;
     index: number;
     hovered: number | null;
     setHovered: React.Dispatch<React.SetStateAction<number | null>>;
   }) => (
     <div
+      tabIndex={0}
       onMouseEnter={() => setHovered(index)}
       onMouseLeave={() => setHovered(null)}
+      onFocus={() => setHovered(index)}
+      onBlur={() => setHovered(null)}
       className={cn(
-        "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full transition-all duration-300 ease-out",
+        "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full transition-[filter,transform] duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020024]",
         hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
       )}
     >
-      <img
+      <Image
         src={card.src}
         alt={card.title}
-        className="absolute inset-0 w-full h-full object-contain"
+        fill
+        sizes="(max-width: 768px) 100vw, 33vw"
+        className="object-contain"
       />
       <div
         className={cn(

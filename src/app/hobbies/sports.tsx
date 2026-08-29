@@ -2,7 +2,6 @@ import FlowingMenu from "./components/sportsComponents/flowingMenu";
 import "./components/sportsComponents/sports.css";
 import { useEffect, useState } from "react";
 import GradientText from "./components/valorantComponents/gradientText";
-import CircularText from "./components/sportsComponents/textPressure";
 import TextPressure from "./components/sportsComponents/textPressure";
 
 const cricketItems = [
@@ -24,12 +23,12 @@ export default function Sports() {
     <div 
         className="p-8 rounded-xl shadow-xl"
         style={{
-        background: 'linear-gradient(90deg, #000045 0%, #0E3878 40%, #4D4D4D 100%)',
+        background: 'linear-gradient(135deg, #04061e 0%, #0b2f66 55%, #0e7490 100%)',
     }}>
 
         {/* Header */}
         <GradientText
-            colors={["#033c94",  "#2074f5",  "#033c94"]}
+            colors={["#67e8f9", "#22d3ee", "#67e8f9"]}
             showBorder={false}
             className="custom-class text-3xl font-bold mb-8 text-center slide-in-bottom"
             >
@@ -42,7 +41,7 @@ export default function Sports() {
         {/* Left - Cricket & IPL */}
         <div className="fade-in-left flex flex-col items-center w-full focus-in-expand stagger-1">
   
-        <div className="w-1/2">
+        <div className="w-full max-w-[420px]">
         <TextPressure
             text="Cricket"
             flex={true}
@@ -52,7 +51,7 @@ export default function Sports() {
             weight={true}
             italic={true}
             textColor="#ffffff"
-            strokeColor="#ff0000"
+            strokeColor="#22d3ee"
             minFontSize={36}
         />
         </div>
@@ -71,8 +70,8 @@ export default function Sports() {
         </div>
 
             {/* Right - Basketball */}
-            <div className="fade-in-right border-l border-gray-400 pl-6 flex flex-col items-center focus-in-expand stagger-2">
-                <div className="w-1/2">
+            <div className="fade-in-right border-l border-cyan-300/20 pl-6 flex flex-col items-center focus-in-expand stagger-2">
+                <div className="w-full max-w-[420px]">
                     <TextPressure
                         text="Basketball"
                         flex={true}
@@ -82,7 +81,7 @@ export default function Sports() {
                         weight={true}
                         italic={true}
                         textColor="#ffffff"
-                        strokeColor="#0E3878"
+                        strokeColor="#38bdf8"
                         minFontSize={36}
                     />
                 </div>

@@ -1,4 +1,5 @@
 import {
+  useCallback,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -7,20 +8,32 @@ import {
 } from "react";
 import { gsap } from "gsap";
 
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 const useMedia = (queries, values, defaultValue) => {
-  const get = () =>
-    values[queries.findIndex((q) => matchMedia(q).matches)] ?? defaultValue;
+  // Callers pass array literals, so these identities change every render.
+  // Key the memo on content to keep the listener effect stable.
+  const queryKey = queries.join("|");
+  const valueKey = values.join("|");
+
+  const get = useCallback(
+    () => values[queries.findIndex((q) => matchMedia(q).matches)] ?? defaultValue,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [queryKey, valueKey, defaultValue]
+  );
 
   const [value, setValue] = useState(get);
 
   useEffect(() => {
-    const handler = () => setValue(get);
-    queries.forEach((q) => matchMedia(q).addEventListener("change", handler));
-    return () =>
-      queries.forEach((q) =>
-        matchMedia(q).removeEventListener("change", handler)
-      );
-  }, [queries]);
+    const handler = () => setValue(get());
+    const lists = queries.map((q) => matchMedia(q));
+    lists.forEach((l) => l.addEventListener("change", handler));
+    handler();
+    return () => lists.forEach((l) => l.removeEventListener("change", handler));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryKey, get]);
 
   return value;
 };
@@ -81,7 +94,7 @@ const Masonry = ({
   const [imagesReady, setImagesReady] = useState(false);
   const [gridData, setGridData] = useState({ grid: [], height: 0 });
 
-  const getInitialPosition = (item) => {
+  const getInitialPosition = useCallback((item) => {
     const containerRect = containerRef.current?.getBoundingClientRect();
     if (!containerRect) return { x: item.x, y: item.y };
 
@@ -108,7 +121,7 @@ const Masonry = ({
       default:
         return { x: item.x, y: item.y + 100 };
     }
-  };
+  }, [animateFrom, containerRef]);
 
   useEffect(() => {
     preloadImages(items.map((i) => i.img)).then(() => setImagesReady(true));
@@ -145,10 +158,22 @@ const Masonry = ({
 
   useLayoutEffect(() => {
     if (!imagesReady) return;
+    // Layout effects run before the effect that fills gridData, so the first
+    // pass can see an empty grid. Bail out instead of marking the component
+    // as mounted, otherwise the entrance animation is silently skipped.
+    if (!gridData.grid.length) return;
+
+    const reduce = prefersReducedMotion();
 
     gridData.grid.forEach((item, index) => {
       const selector = `[data-key="${item.id}"]`;
       const animProps = { x: item.x, y: item.y, width: item.w, height: item.h };
+
+      if (reduce) {
+        // No travel, no blur, no stagger: snap straight to final layout.
+        gsap.set(selector, { ...animProps, opacity: 1, filter: "none" });
+        return;
+      }
 
       if (!hasMounted.current) {
         const start = getInitialPosition(item);
@@ -182,9 +207,37 @@ const Masonry = ({
     });
 
     hasMounted.current = true;
-  }, [gridData, imagesReady, stagger, animateFrom, blurToFocus, duration, ease]);
+
+    // Safety net: the entrance tween starts tiles at opacity 0, so if the
+    // rAF-driven ticker never runs the images would stay invisible. Snap to
+    // the resting state once the animation should have finished.
+    const settleMs = 800 + gridData.grid.length * stagger * 1000 + 400;
+    const settle = setTimeout(() => {
+      gridData.grid.forEach((item) => {
+        gsap.set(`[data-key="${item.id}"]`, {
+          x: item.x,
+          y: item.y,
+          width: item.w,
+          height: item.h,
+          opacity: 1,
+          filter: "none",
+        });
+      });
+    }, settleMs);
+
+    return () => clearTimeout(settle);
+  }, [
+    gridData,
+    imagesReady,
+    stagger,
+    blurToFocus,
+    duration,
+    ease,
+    getInitialPosition,
+  ]);
 
   const handleMouseEnter = (id, element) => {
+    if (prefersReducedMotion()) return;
     if (scaleOnHover) {
       gsap.to(`[data-key="${id}"]`, {
         scale: hoverScale,
@@ -199,6 +252,7 @@ const Masonry = ({
   };
 
   const handleMouseLeave = (id, element) => {
+    if (prefersReducedMotion()) return;
     if (scaleOnHover) {
       gsap.to(`[data-key="${id}"]`, {
         scale: 1,
@@ -223,7 +277,6 @@ const Masonry = ({
           key={item.id}
           data-key={item.id}
           className="absolute box-content"
-          style={{ willChange: "transform, width, height, opacity" }}
           // onClick={() => window.open(item.url, "_blank", "noopener")}
           onMouseEnter={(e) => handleMouseEnter(item.id, e.currentTarget)}
           onMouseLeave={(e) => handleMouseLeave(item.id, e.currentTarget)}

@@ -1,9 +1,7 @@
 "use client";
+
 import { useEffect, useState } from "react";
-import {
-  CircularProgressbar,
-  buildStyles,
-} from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 const AnimatedCircularProgress = ({ level }: { level: number }) => {
@@ -34,12 +32,12 @@ const AnimatedCircularProgress = ({ level }: { level: number }) => {
         value={progress}
         text={`${Math.round(progress)}%`}
         styles={buildStyles({
-          pathColor: "#4ade80",
-          trailColor: "#2d2d2d",
+          pathColor: "#22d3ee",
+          trailColor: "#0a1633",
           textColor: "#ffffff",
           textSize: "28px",
           strokeLinecap: "round",
-          pathTransition: "none", // disable internal transitions
+          pathTransition: "none",
         })}
       />
     </div>

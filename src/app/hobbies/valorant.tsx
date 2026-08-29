@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import MatchPieChart from "./components/valorantComponents/matchPieChart";
-// import RankProgressChart from "./components/valorantComponents/rankProgressChart";
 import HighlightCarousel from "./components/valorantComponents/highlightVideosCarousel";
 import ValorantLoader from "../components/loaders/valorantLoader";
 import GradientText from "./components/valorantComponents/gradientText"
@@ -22,7 +22,6 @@ export default function ValorantStats() {
     const [response,setResponse] = useState<MMRData | null>(null)
     const [accountLevel, setAccountLevel] = useState<number | null>(null);
     const [loader,setLoader] = useState<boolean>(true);
-    // const [hovered, setHovered] = useState(false);
 
     useEffect(() => {
     const fetchData = async () => {
@@ -32,8 +31,6 @@ export default function ValorantStats() {
         const data = await res.json();
         if (data) {
           setResponse(data);
-        } else {
-          console.log("Failed to fetch MMR data");
         }
 
         // Fetch Account Level
@@ -42,8 +39,6 @@ export default function ValorantStats() {
         if (data2 && data2.account_level !== undefined) {
           setAccountLevel(data2.account_level);
           setLoader(false);
-        } else {
-          console.log("Failed to fetch account level");
         }
       } catch (err) {
         console.error("Error fetching Valorant data:", err);
@@ -71,9 +66,11 @@ return (
     <div className="relative grid grid-cols-1 gap-6 mb-6 place-items-center mt-4 sm:flex sm:flex-row sm:justify-between sm:items-center">
         {/* Left: Profile Info */}
         <div className="flex flex-col items-center w-36 slide-in-left">
-            <img
+            <Image
             src="/valorant-card.png"
             alt="Valorant Card"
+            width={120}
+            height={120}
             className="h-15 w-15 lg:w-30 lg:h-30 rounded-full border-2 border-white mb-2"
             />
             <span className="text-gray-300 text-sm lg:text-base font-semibold text-center">
@@ -87,7 +84,7 @@ return (
             Top 0.1% Players In APAC<br/>
             <span className="text-xs lg:text-base">Source:</span> <a href="https://www.esportstales.com/valorant/rank-distribution-and-percentage-of-players-by-tier" target="_blank"
             rel="noopener noreferrer"
-            className="text-[8px] lg:text-sm text-blue-400 underline hover:text-blue-300 font-medium">Valorant Rank Distribution →</a>
+            className="text-[8px] lg:text-sm text-cyan-300 underline hover:text-cyan-200 font-medium">Valorant Rank Distribution →</a>
         </h1>
 
         {/* Right: Stats and Pie Chart */}
@@ -116,9 +113,11 @@ return (
     <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-6 text-center sm:text-left">
       {/* Current Rank (Left) */}
       <div className="flex items-center gap-3 sm:gap-4 slide-in-left">
-        <img
+        <Image
           src="https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/23/smallicon.png"
           alt="Current Rank"
+          width={64}
+          height={64}
           className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full border-2 border-white"
         />
         <div>
@@ -132,7 +131,7 @@ return (
         href="https://tracker.gg/valorant/profile/riot/Tannu%234434/overview"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-xs sm:text-sm text-blue-400 underline hover:text-blue-300 transition slide-in-top"
+        className="text-xs sm:text-sm text-cyan-300 underline hover:text-cyan-200 transition slide-in-top"
       >
         View Full Valorant Profile →
       </a>
@@ -143,9 +142,11 @@ return (
           <p className="text-base sm:text-lg font-semibold">Peak Rank</p>
           <p className="text-sm sm:text-base text-gray-300">{response?.highest_rank}</p>
         </div>
-        <img
+        <Image
           src="/ranks/Immortal_3_Rank.png"
           alt="Peak Rank"
+          width={64}
+          height={64}
           className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full border-2 border-white"
         />
       </div>

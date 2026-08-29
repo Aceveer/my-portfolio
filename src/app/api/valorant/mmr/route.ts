@@ -52,8 +52,7 @@ export async function GET() {
       highest_rank:data.highest_rank.patched_tier,
       highest_rank_by_season: highestRankBySeason,
     });
-  } catch (error) {
-    console.log(error)
+  } catch {
     return NextResponse.json({ status: 500, message: "Internal API fetch failed" });
   }
 }

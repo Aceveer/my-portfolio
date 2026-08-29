@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 
 export interface ChromaItem {
@@ -45,8 +46,8 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     title: "JustKleen Services Website",
     subtitle: "Professional website for an ex-military, and a business in providing cleaning and security consultancy and services. Featuring responsive design and SEO optimization.",
     handle: "Next.js | Vercel Analytics",
-    borderColor: "#1D3AE5",
-    gradient: "linear-gradient(145deg,#0A3AE5,#000)",
+    borderColor: "#22d3ee",
+    gradient: "linear-gradient(145deg,#0e7490,#020024)",
     url: "https://www.justkleenservices.com/",
   },
   {
@@ -54,8 +55,8 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     title: "SceneIt",
     subtitle: "A full-stack movie platform enabling users to explore and manage movie data seamlessly.",
     handle: "Next.js | FastAPI | MySQL",
-    borderColor: "#4F46E5",
-    gradient: "linear-gradient(145deg,#4F46E5,#000)",
+    borderColor: "#38bdf8",
+    gradient: "linear-gradient(145deg,#075985,#020024)",
     url: "https://github.com/Aceveer/SceneIt-Movie-Platform",
   },
   {
@@ -63,8 +64,8 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     title: "IPL 2024 Analysis",
     subtitle: "Comprehensive analysis of IPL 2024 season, offering insights into team and player performances.",
     handle: "Next.js | Python | MS Excel",
-    borderColor: "#10B981",
-    gradient: "linear-gradient(210deg,#10B981,#000)",
+    borderColor: "#67e8f9",
+    gradient: "linear-gradient(210deg,#0e7490,#020024)",
     url: "https://ipl2024tannuakram.vercel.app/",
   },
   {
@@ -72,8 +73,8 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     title: "Marsupium Admin",
     subtitle: "Admin dashboard for managing financial insights and user access in a fintech application.",
     handle: "Next.js | .NET 6 | GCP | Firebase",
-    borderColor: "#F59E0B",
-    gradient: "linear-gradient(165deg,#F59E0B,#000)",
+    borderColor: "#22d3ee",
+    gradient: "linear-gradient(165deg,#0891b2,#020024)",
     url: "https://marsupium-admin.vercel.app/login",
   },
   {
@@ -81,8 +82,8 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     title: "KoRa Consults",
     subtitle: "Professional website for a hospitality consultancy, featuring responsive design and SEO optimization.",
     handle: "Next.js | Tailwind CSS | ZOHO Mail",
-    borderColor: "#EF4444",
-    gradient: "linear-gradient(195deg,#EF4444,#000)",
+    borderColor: "#38bdf8",
+    gradient: "linear-gradient(195deg,#0b4d99,#020024)",
     url: "https://www.koraconsults.com/",
   },
   {
@@ -90,8 +91,8 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     title: "Volunteering Organization",
     subtitle: "Digital platform for volunteer signups and program management for a local charity.",
     handle: "Vue.js | Node.js | MySQL | Docker",
-    borderColor: "#8B5CF6",
-    gradient: "linear-gradient(225deg,#8B5CF6,#000)",
+    borderColor: "#67e8f9",
+    gradient: "linear-gradient(225deg,#0e7490,#020024)",
     url: "https://github.com/Aceveer/Volunteering-Website",
   },
   {
@@ -99,8 +100,8 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     title: "No Code Solution for InfluxDB",
     subtitle: "User-friendly interface for querying and visualizing time-series data without coding.",
     handle: "HTML | CSS | Node.js | InfluxDB | Grafana",
-    borderColor: "#06B6D4",
-    gradient: "linear-gradient(135deg,#06B6D4,#000)",
+    borderColor: "#22d3ee",
+    gradient: "linear-gradient(135deg,#0891b2,#020024)",
     url: "https://github.com/Aceveer/InflxuxDB",
   },
   {
@@ -108,8 +109,8 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     title: "Grocery List Recommendation",
     subtitle: "Machine learning model predicting grocery reorders based on user behavior.",
     handle: "Python | Scikit-learn",
-    borderColor: "#F43F5E",
-    gradient: "linear-gradient(135deg,#F43F5E,#000)",
+    borderColor: "#38bdf8",
+    gradient: "linear-gradient(135deg,#075985,#020024)",
     url: "https://github.com/Aceveer/MBD-S1-2024/tree/main/Assignment%203",
   },
   {
@@ -117,8 +118,8 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     title: "Time Series Forecasting",
     subtitle: "Forecasting energy consumption trends using time-series data visualization.",
     handle: "Node.js | InfluxDB | Grafana",
-    borderColor: "#22C55E",
-    gradient: "linear-gradient(135deg,#22C55E,#000)",
+    borderColor: "#67e8f9",
+    gradient: "linear-gradient(135deg,#0e7490,#020024)",
     url: "https://github.com/Aceveer/MBD-S1-2024/tree/main/Assignment%202",
   },
   {
@@ -126,8 +127,8 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     title: "Obesity Prediction",
     subtitle: "Predictive model analyzing factors contributing to obesity using machine learning.",
     handle: "Python | Scikit-learn",
-    borderColor: "#EAB308",
-    gradient: "linear-gradient(135deg,#EAB308,#000)",
+    borderColor: "#22d3ee",
+    gradient: "linear-gradient(135deg,#0b4d99,#020024)",
     url: "https://github.com/Aceveer/MBD-S1-2024/tree/main/Assignment%201",
   },
 ];
@@ -202,9 +203,18 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
       {data.map((c, i) => (
         <article
           key={i}
+          role="link"
+          tabIndex={0}
+          aria-label={`${c.title} (opens in a new tab)`}
           onMouseMove={handleCardMove}
           onClick={() => handleCardClick(c.url)}
-          className="group relative flex flex-col w-[300px] rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleCardClick(c.url);
+            }
+          }}
+          className="project-card group relative flex flex-col w-[300px] rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020024]"
           style={
             {
               "--card-border": c.borderColor || "transparent",
@@ -221,29 +231,31 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
             }}
           />
           <div className="relative z-10 flex-1 p-[10px] box-border">
-            <img
+            <Image
               src={c.image}
               alt={c.title}
-              loading="lazy"
+              width={300}
+              height={200}
+              sizes="300px"
               className="w-full h-full object-cover rounded-[10px]"
             />
           </div>
-          <footer className="relative z-10 p-3 text-white font-sans w-full break-words">
+          <footer className="relative z-10 p-4 text-white font-sans w-full break-words">
             <h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
 
             {c.handle && (
-              <span className="block text-[0.95rem] opacity-80 text-right">
+              <span className="mt-1 block font-mono text-[0.72rem] uppercase tracking-wide text-cyan-200/80">
                 {c.handle}
               </span>
             )}
 
-            <p className="m-0 text-[0.85rem] opacity-85 break-words">
+            <p className="mt-2 mb-0 text-[0.85rem] leading-relaxed opacity-85 break-words">
               {c.subtitle}
             </p>
 
             {c.location && (
               <span className="block text-[0.85rem] opacity-85 text-right">
-                {c.location}aaaa
+                {c.location}
               </span>
             )}
           </footer>

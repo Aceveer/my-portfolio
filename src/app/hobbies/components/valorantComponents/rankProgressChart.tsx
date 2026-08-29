@@ -80,9 +80,6 @@ const rankProgressData = useMemo(() => {
     }))
 }, [ranks]);
 
-
-
-  console.log("Ranks",ranks)
   const data = {
     labels: rankProgressData.map((point) => point.season),
     datasets: [

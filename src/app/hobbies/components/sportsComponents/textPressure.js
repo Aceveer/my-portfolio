@@ -74,18 +74,31 @@ const TextPressure = ({
     if (!containerRef.current || !titleRef.current) return;
 
     const { width: containerW, height: containerH } = containerRef.current.getBoundingClientRect();
+    if (!containerW) return;
 
-    let newFontSize = containerW / (chars.length / 2);
-    newFontSize = Math.max(newFontSize, minFontSize);
+    // First guess assumes the narrow variable font. If that font hasn't
+    // loaded, the fallback is much wider, so measure and shrink to fit
+    // rather than letting the text overflow into `overflow-hidden`.
+    let newFontSize = Math.max(containerW / (chars.length / 2), minFontSize);
 
     setFontSize(newFontSize);
     setScaleY(1);
     setLineHeight(1);
 
     requestAnimationFrame(() => {
-      if (!titleRef.current) return;
-      const textRect = titleRef.current.getBoundingClientRect();
+      const title = titleRef.current;
+      if (!title) return;
 
+      // Shrink until the rendered text fits the container width.
+      let guard = 0;
+      while (title.scrollWidth > containerW && newFontSize > minFontSize && guard < 40) {
+        newFontSize = Math.max(newFontSize * 0.92, minFontSize);
+        title.style.fontSize = `${newFontSize}px`;
+        guard += 1;
+      }
+      setFontSize(newFontSize);
+
+      const textRect = title.getBoundingClientRect();
       if (scale && textRect.height > 0) {
         const yRatio = containerH / textRect.height;
         setScaleY(yRatio);
@@ -97,11 +110,42 @@ const TextPressure = ({
   useEffect(() => {
     setSize();
     window.addEventListener('resize', setSize);
-    return () => window.removeEventListener('resize', setSize);
+
+    // Re-fit once webfonts settle (fallback metrics differ from the real font).
+    let cancelled = false;
+    if (typeof document !== 'undefined' && document.fonts?.ready) {
+      document.fonts.ready.then(() => {
+        if (!cancelled) setSize();
+      });
+    }
+
+    const ro =
+      typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => setSize()) : null;
+    if (ro && containerRef.current) ro.observe(containerRef.current);
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener('resize', setSize);
+      if (ro) ro.disconnect();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scale, text]);
 
   useEffect(() => {
+    // The cursor-reactive loop reads layout every frame. Skip it entirely
+    // for reduced-motion users and render the text at its resting weight.
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      spansRef.current.forEach((span) => {
+        if (!span) return;
+        span.style.opacity = 1;
+        span.style.fontVariationSettings = `'wght' 400, 'wdth' 100, 'ital' 0`;
+      });
+      return;
+    }
+
     let rafId;
     const animate = () => {
       mouseRef.current.x += (cursorRef.current.x - mouseRef.current.x) / 15;
@@ -171,8 +215,9 @@ const TextPressure = ({
         }
       `}</style>
 
-      <h1
+      <h3
         ref={titleRef}
+        aria-label={text}
         className={`text-pressure-title ${className} ${flex ? 'flex justify-between' : ''
           } ${stroke ? 'stroke' : ''} uppercase text-center`}
         style={{
@@ -189,6 +234,7 @@ const TextPressure = ({
         {chars.map((char, i) => (
           <span
             key={i}
+            aria-hidden="true"
             ref={(el) => (spansRef.current[i] = el)}
             data-char={char}
             className="inline-block"
@@ -196,7 +242,7 @@ const TextPressure = ({
             {char}
           </span>
         ))}
-      </h1>
+      </h3>
     </div>
   );
 };

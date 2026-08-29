@@ -129,10 +129,8 @@ const SecondSection = () => {
 
   return (
     <section ref={sectionRef}
-    style={{
-        background: 'linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(11, 77, 153, 1) 100%)'
-      }}
-      className={`w-full py-12 px-6 text-white transition-opacity duration-700${
+    style={{ background: 'var(--gradient-brand)' }}
+      className={`w-full py-12 px-6 text-white transition-opacity duration-700 ${
         isVisible ? "fade-in-top" : "opacity-0"
       }`}>
       <h2 className="text-3xl font-bold text-center mb-8">Skills</h2>
@@ -144,7 +142,9 @@ const SecondSection = () => {
               key={category}
               className={({ selected }) =>
                 `px-4 py-2 rounded-full text-sm font-medium transition ${
-                  selected ? "bg-green-500 text-black" : "bg-gray-800 text-white hover:bg-green-600"
+                  selected
+                    ? "bg-cyan-400 text-[#04061e]"
+                    : "bg-white/5 text-white hover:bg-cyan-400/15"
                 }`
               }
             >
@@ -156,7 +156,7 @@ const SecondSection = () => {
         <Tab.Panels>
           {skillCategories.map((category) => (
             <Tab.Panel key={category}>
-              <div className="bg-[#1a1a1a] rounded-xl p-6 mx-4 border border-green-600">
+              <div className="bg-[#04061e]/60 rounded-xl p-6 mx-4 border border-cyan-400/25">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                   {skillPanels[category]}
                 </div>

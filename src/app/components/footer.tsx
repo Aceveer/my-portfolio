@@ -35,8 +35,9 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-icon facebook"
+                aria-label="Facebook profile"
               >
-                <i className="fab fa-facebook-f icon" />
+                <i className="fab fa-facebook-f icon" aria-hidden="true" />
               </a>
             </li>
             <li>
@@ -45,8 +46,9 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-icon instagram"
+                aria-label="Instagram profile"
               >
-                <i className="fab fa-instagram icon" />
+                <i className="fab fa-instagram icon" aria-hidden="true" />
               </a>
             </li>
             <li>
@@ -55,8 +57,9 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-icon linkedin"
+                aria-label="LinkedIn profile"
               >
-                <i className="fab fa-linkedin-in icon" />
+                <i className="fab fa-linkedin-in icon" aria-hidden="true" />
               </a>
             </li>
             <li>
@@ -65,8 +68,9 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-icon github"
+                aria-label="GitHub profile"
               >
-                <i className="fab fa-github icon" />
+                <i className="fab fa-github icon" aria-hidden="true" />
               </a>
             </li>
           </ul>
@@ -76,7 +80,7 @@ export default function Footer() {
       <div className="w-full md:w-1/3 text-sm text-white space-y-2 text-right md:text-right">
         <h2 className="font-semibold mb-1">Contact</h2>
         <p className="flex items-center justify-end gap-2">
-          <MdEmail className="text-lg" />
+          <MdEmail className="text-lg" aria-hidden="true" />
           <a
             href="mailto:tanveerakramandrew@gmail.com"
             className="hover:underline text-sm"
@@ -85,7 +89,7 @@ export default function Footer() {
           </a>
         </p>
         <p className="flex items-center justify-end gap-2 text-sm">
-          <MdLocationOn className="text-xl" />
+          <MdLocationOn className="text-xl" aria-hidden="true" />
           Adelaide, Australia
         </p>
       </div>

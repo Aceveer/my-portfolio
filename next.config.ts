@@ -1,7 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    // Remote hosts allowed through the next/image optimizer.
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "media.valorant-api.com",
+        pathname: "/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

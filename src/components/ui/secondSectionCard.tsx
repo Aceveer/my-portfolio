@@ -24,7 +24,7 @@ const SecondSectionCard: React.FC<SecondSectionCardProps> = ({
     <SpotlightCard spotlightColor={spotlightColor}>
       {/* Header: Image + Title */}
     <div className="flex items-center gap-4">
-        <div className="text-4xl text-green-400">{icon}</div>
+        <div className="text-4xl text-cyan-300">{icon}</div>
         <h3 className="text-xl font-bold">{title}</h3>
       </div>
 

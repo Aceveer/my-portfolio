@@ -13,10 +13,16 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <div className="flex flex-col min-h-screen">
+      {/* Kept outside <Header> so it doesn't inherit the AOS fade-down
+          transform, which pushed it off-screen when focused. */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+
       <Header />
 
       {/* Main content area takes all available space */}
-      <main className="flex-grow">
+      <main id="main-content" tabIndex={-1} className="flex-grow">
         {children}
       </main>
 

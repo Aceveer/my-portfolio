@@ -76,6 +76,7 @@ export default function HighlightCarousel() {
             autoPlay
             muted
             loop
+            playsInline
             poster={currentVideo.poster}
             className="w-full h-full rounded-lg"
           >
@@ -86,20 +87,22 @@ export default function HighlightCarousel() {
 
         <button
           onClick={prevVideo}
-          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition"
+          aria-label="Previous clip"
+          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
         >
-          <ChevronLeft className="text-white w-6 h-6" />
+          <ChevronLeft aria-hidden="true" className="text-white w-6 h-6" />
         </button>
 
         <button
           onClick={nextVideo}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition"
+          aria-label="Next clip"
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
         >
-          <ChevronRight className="text-white w-6 h-6" />
+          <ChevronRight aria-hidden="true" className="text-white w-6 h-6" />
         </button>
       </div>
 
-      <p className="text-xs text-gray-400 mt-2 text-center">
+      <p aria-live="polite" className="text-xs text-gray-400 mt-2 text-center">
         Clip {current + 1} of {highlightVideos.length}
       </p>
     </div>

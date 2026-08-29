@@ -49,7 +49,7 @@ export function ExpandableCardDemo( { cards }: { cards: CardType[] } ) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 h-full w-full z-10"
+            className="fixed inset-0 h-full w-full z-10 bg-[#020024]/80 backdrop-blur-sm"
           />
         )}
       </AnimatePresence>
@@ -79,7 +79,7 @@ export function ExpandableCardDemo( { cards }: { cards: CardType[] } ) {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%]  flex flex-col bg-black dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
+              className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-[#04061e] border border-cyan-400/25 sm:rounded-3xl overflow-hidden"
             >
               
 
@@ -88,7 +88,7 @@ export function ExpandableCardDemo( { cards }: { cards: CardType[] } ) {
                   <div className="">
                     <motion.h3
                       layoutId={`title-${active.title}-${id}`}
-                      className="font-bold text-[#0B4D99] dark:text-neutral-200"
+                      className="text-lg font-bold text-white"
                     >
                       {active.title}
                     </motion.h3>
@@ -96,7 +96,7 @@ export function ExpandableCardDemo( { cards }: { cards: CardType[] } ) {
 
                   <motion.p
                     layoutId={`button-${active.title}-${id}`}
-                    className="px-4 py-3 text-sm rounded-full font-bold text-green-500"
+                    className="px-4 py-3 text-sm rounded-full font-bold text-cyan-300"
                   >
                     {active.ctaText}
                   </motion.p>
@@ -107,7 +107,7 @@ export function ExpandableCardDemo( { cards }: { cards: CardType[] } ) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="text-neutral-200 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-neutral-400  [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                    className="text-slate-300/90 text-sm lg:text-base leading-relaxed h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
                   >
                     {typeof active.content === "function"
                       ? active.content()
@@ -126,18 +126,18 @@ export function ExpandableCardDemo( { cards }: { cards: CardType[] } ) {
           layoutId={`card-${card.title}-${id}`}
           key={`card-${card.title}-${id}`}
           onClick={() => setActive(card)}
-          className="w-full p-4 flex flex-col gap-2 justify-between hover:bg-black dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
+          className="w-full p-4 flex flex-col gap-2 justify-between rounded-xl cursor-pointer border border-transparent transition-colors duration-300 hover:border-cyan-400/40 hover:bg-[#020024]/50"
         >
           <div className="flex flex-col gap-2 w-full">
             {/* Top Row: Company and Year */}
             <div className="flex justify-between items-center w-full">
               <motion.h3
                 layoutId={`title-${card.title}-${id}`}
-                className="text-neutral-200 dark:text-neutral-200 md:text-3xl sm:text-base text-sm"
+                className="text-white font-semibold md:text-xl sm:text-base text-sm"
               >
                 {card.title}
               </motion.h3>
-              <span className="md:text-2xl sm:text-sm text-xs text-white dark:text-neutral-400">
+              <span className="font-mono text-xs sm:text-sm text-slate-300/70 whitespace-nowrap">
                 {card.year}
               </span>
             </div>
@@ -146,13 +146,13 @@ export function ExpandableCardDemo( { cards }: { cards: CardType[] } ) {
             <div className="flex justify-between items-center w-full">
               <motion.p
                 layoutId={`description-${card.subtitle}-${id}`}
-                className="text-green-500 dark:text-neutral-400 md:text-3xl sm:text-base text-sm"
+                className="text-cyan-300 md:text-base sm:text-sm text-sm"
               >
                 {card.subtitle}
               </motion.p>
               <motion.button
                 layoutId={`button-${card.title}-${id}`}
-                className="px-4 py-0.5 sm:py-2 md:text-lg sm:text-base text-sm rounded-full font-bold bg-gray-100 cursor-pointer text-black"
+                className="px-3 py-1 text-xs sm:text-sm rounded-full font-medium bg-white/10 text-slate-200 border border-white/15 cursor-pointer whitespace-nowrap"
               >
                 {card.ctaText}
               </motion.button>

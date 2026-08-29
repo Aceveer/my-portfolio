@@ -36,7 +36,7 @@ const items = [
 export default function Music() {
 
   return (
-    <div className="bg-gradient-to-r from-black to-[#1DB954] text-white p-6 rounded-xl shadow-lg">
+    <div className="bg-gradient-to-br from-[#04061e] via-[#062b1d] to-[#0d4d32] text-white p-6 rounded-xl shadow-lg border border-emerald-300/15">
       <h2 className="text-2xl font-semibold mb-4 text-center">My Top Artists</h2>
       <>
         <Masonry
